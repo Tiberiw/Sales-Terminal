@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Total</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let orderItem of getActiveOrder().products"  >
+                        <td class="col-md-6">
+                        <div class="media">
+                            <div class="media-body">
+                                <h4 class="media-heading">{{orderItem.product.name}}</h4>
+                                <h5 class="media-heading"> by {{orderItem.product.supplier}}</h5>
+                            </div>
+                        </div></td>
+                        <td class="col-md-1" style="text-align: center">
+                        <input type="email" class="form-control" id="exampleInputEmail1" value="{{orderItem.quantity}}">
+                        </td>
+                        <td class="col-md-1 text-center"><strong>${{orderItem.product.dollarPrice}}</strong></td>
+                        <td class="col-md-1 text-center"><strong>${{orderItem.quantity * orderItem.product.dollarPrice}}</strong></td>
+                        <td class="col-md-1">
+                        <button (click)="removeProductFromOrder(orderItem.product)" type="button" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove"></span> Remove
+                        </button></td>
+                    </tr>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td><h5>Total</h5></td>
+                        <td class="text-right"><h5><strong>${{getTotal()}}</strong></h5></td>
+                    </tr>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>
+                        <button routerLink="/user/products" type="button" class="btn btn-outline-secondary">
+                            Back
+                        </button></td>
+                        <td>
+                        <button (click)="onPlaceOrder()" type="button" class="btn btn-success">
+                            Checkout <span class="glyphicon glyphicon-play"></span>
+                        </button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,170 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+<div class="row flex-lg-nowrap">
+  <div class="col-12 col-lg-auto mb-3" style="width: 200px;">
+    <div class="card p-3">
+      <div class="e-navlist e-navlist--active-bg">
+        <ul class="nav">
+          <li class="nav-item"><a class="nav-link px-2 active" href="#"><i class="fa fa-fw fa-user mr-1"></i><span>{{salesPerson.username}}</span></a></li>
+          <li routerLink="/user/{id}/settings" class="nav-item"><a class="nav-link px-2" ><i class="fa fa-fw fa-cog mr-1"></i><span>Settings</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="row flex-lg-nowrap">
+      <div class="col mb-3">
+        <div class="e-panel card">
+          <div class="card-body">
+            <div class="card-title">
+              <h6 class="mr-2"><span>Products:</span></h6>
+            </div>
+            <div class="e-table">
+              <div class="table-responsive table-lg mt-3">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      
+                      <th>Product ID</th>
+                      <th class="max-width">Name</th>
+                      <th class="sortable">Stock</th>
+                      <th>Price per unit</th>
+                      <th>Supplier</th>
+                      <th>Add to current order</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let product of products">
+                        <td class="text-nowrap align-middle">#{{product.id}}</td>
+
+                        <td class="text-nowrap align-middle">{{product.name}}</td>
+                        <td class="text-nowrap align-middle">{{product.quantity}}</td>
+                        
+                        <td class="text-nowrap align-middle">${{product.dollarPrice}}</td>
+
+
+                        <td class="text-nowrap align-middle">{{product.supplier}}</td>
+                        
+                        <td id="container-modal" class="text-center align-middle">
+                            <div class="btn-group align-top">
+                                <button (click)="openModal(product)" class="btn btn-sm btn-outline-secondary badge" type="button" data-toggle="modal" data-target="#user-form-modal">ADD</button>
+                            </div>
+
+
+
+
+
+
+                              
+                        <div class="modal fade" id="productUnitsModal" tabindex="-1" role="dialog" aria-labelledby="productUnitsLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+
+                               <div class="modal-header">
+                                  <h5 class="modal-title" id="productUnitsLabel">How many units?</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                  </button>
+                               </div>
+
+
+
+                               <div class="modal-body">
+                                  <div class="form-group">
+                                    <label for="quantity">Quantity</label>
+                                    <input (input)="onItemChange()" [defaultValue]="0" min="0" type="number" name="quantity" class="form-control" id="quantity" required>
+                                  </div>
+                                  <div class="quantity-error" id="quantity-error">
+
+                                  </div>
+                                  <div class="modal-footer">
+                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                     <button (click)="onAddItemToOrder()" class="btn btn-danger" data-dismiss="modal" id="addToOrderButton">Add To Order</button>
+                                  </div>
+                               </div>
+
+                            </div>
+                         </div> 
+                        </div>
+
+                      </td>
+
+
+
+                        
+
+                        
+
+
+
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- <div class="d-flex justify-content-center">
+                <ul class="pagination mt-3 mb-0">
+                  <li class="disabled page-item"><a href="#" class="page-link">‹</a></li>
+                  <li class="active page-item"><a href="#" class="page-link">1</a></li>
+                  <li class="page-item"><a href="#" class="page-link">2</a></li>
+                  <li class="page-item"><a href="#" class="page-link">3</a></li>
+                  <li class="page-item"><a href="#" class="page-link">4</a></li>
+                  <li class="page-item"><a href="#" class="page-link">5</a></li>
+                  <li class="page-item"><a href="#" class="page-link">›</a></li>
+                  <li class="page-item"><a href="#" class="page-link">»</a></li>
+                </ul>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-3 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="text-center px-xl-3">
+              <button routerLink="/user/active-order" class="btn btn-success btn-block" type="button" data-toggle="modal" data-target="#user-form-modal">Current Order</button>
+            </div>
+            <hr class="my-3">
+            
+            <!-- <div>
+              <div class="form-group">
+                <label>Search by Name:</label>
+                <div><input class="form-control w-100" type="text" placeholder="Name" value=""></div>
+              </div>
+            </div>
+            <hr class="my-3">
+            <div class="">
+              <label>Status:</label>
+              <div class="px-2">
+                <div class="custom-control custom-radio">
+                  <input type="radio" class="custom-control-input" name="user-status" id="users-status-active" checked>
+                  <label class="custom-control-label" for="users-status-active">All</label>
+                </div>
+              </div>
+              <div class="px-2">
+                <div class="custom-control custom-radio">
+                  <input type="radio" class="custom-control-input" name="user-status" id="users-status-disabled">
+                  <label class="custom-control-label" for="users-status-disabled">In stock</label>
+                </div>
+              </div>
+            </div> -->
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+</div>
+
+
+ 
+
+
+
+
