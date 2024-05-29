@@ -1,6 +1,6 @@
 ## Sales-Terminal - Product Management Web App
 
-- Authentication system with JWT, user roles, and WebSockets for product ordering.
+- Authentication system with JWT, user roles, and WebSockets for product selling.
 - Implemented REST API for admin to manage Users and Products.
 
 Exposed To: Spring Boot, Hibernate, PostgreSQL, Angular, Typescript, Bootstrap.
